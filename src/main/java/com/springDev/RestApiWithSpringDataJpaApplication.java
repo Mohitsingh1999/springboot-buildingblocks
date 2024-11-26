@@ -9,5 +9,4 @@ public class RestApiWithSpringDataJpaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestApiWithSpringDataJpaApplication.class, args);
 	}
-
 }
