@@ -26,7 +26,11 @@ public class UserService {
     public Optional<User> getUserById(Long id){
         Optional<User> user=userRepositary.findById(id);
         return user;
+    }
 
+    public User updateUserById(Long id, User user){
+        user.setId(id);
+        return userRepositary.save(user);
     }
 
 }
