@@ -33,4 +33,12 @@ public class UserService {
         return userRepositary.save(user);
     }
 
+    public void deleteUserById(Long id){
+        if(userRepositary.findById(id).isPresent()){
+            userRepositary.deleteById(id);
+        }
+
+
+    }
+
 }
