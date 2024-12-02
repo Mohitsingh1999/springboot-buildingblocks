@@ -1,5 +1,6 @@
 package com.springDev.service;
 
+import com.springDev.customexceptions.UserNotFoundException;
 import com.springDev.entities.User;
 import com.springDev.repositaries.UserRepositary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,12 @@ public class UserService {
         return userRepositary.save(user);
     }
 
-    public Optional<User> getUserById(Long id){
+    public Optional<User> getUserById(Long id) throws UserNotFoundException {
         Optional<User> user=userRepositary.findById(id);
+        if(!user.isPresent()){
+            throw new UserNotFoundException("User not found in user Repositary");
+
+        }
         return user;
     }
 
