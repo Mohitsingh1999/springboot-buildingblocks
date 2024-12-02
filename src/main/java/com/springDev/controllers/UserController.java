@@ -6,6 +6,7 @@ import com.springDev.service.UserService;
 import jakarta.persistence.Access;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.ErrorResponseException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -41,7 +42,12 @@ public class UserController {
 
     @PutMapping("/users/{id}")
     public User updateUserById(@PathVariable Long id,@RequestBody User user){
-        return userService.updateUserById(id,user);
+        try{
+            return userService.updateUserById(id,user);
+        }catch(UserNotFoundException ex){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,ex.getMessage());
+        }
+
 
     }
 

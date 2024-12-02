@@ -33,7 +33,11 @@ public class UserService {
         return user;
     }
 
-    public User updateUserById(Long id, User user){
+    public User updateUserById(Long id, User user) throws UserNotFoundException{
+        Optional<User> optionalUser=userRepositary.findById(id);
+        if(!optionalUser.isPresent()){
+            throw new UserNotFoundException("User not found in user Repositary, Please provide the correct user id");
+        }
         user.setId(id);
         return userRepositary.save(user);
     }
