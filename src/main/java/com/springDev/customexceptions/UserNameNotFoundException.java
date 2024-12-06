@@ -1,11 +1,11 @@
 package com.springDev.customexceptions;
 
-public class UserNotFoundException extends Exception{
+public class UserNameNotFoundException extends Exception{
 
     private static final long serialVersionUID=1L;
 
 
-    public UserNotFoundException(String message) {
+    public UserNameNotFoundException(String message) {
         super(message);
     }
 }

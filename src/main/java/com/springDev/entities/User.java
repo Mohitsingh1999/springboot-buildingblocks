@@ -9,7 +9,9 @@ import jakarta.persistence.GeneratedValue;
 
 
 import jakarta.persistence.Column;
-
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import org.antlr.v4.runtime.misc.NotNull;
 
 
 @Entity
@@ -19,8 +21,11 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotEmpty(message="Username is mandatory, Please provide username")
     @Column(name="USER_NAME",length=50,nullable = false,unique = true)
     private String userName;
+    @Size(min = 2,message = "First name should not be blank, Please provide atleast 2 characters")
     @Column(name="FIRST_NAME",length=50,nullable = false)
     private String firstName;
     @Column(name="LAST_NAME",length=50,nullable = false)

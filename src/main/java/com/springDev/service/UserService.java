@@ -1,6 +1,6 @@
 package com.springDev.service;
 
-import com.springDev.customexceptions.UserNotFoundException;
+import com.springDev.customexceptions.UserNameNotFoundException;
 import com.springDev.entities.User;
 import com.springDev.repositaries.UserRepositary;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +26,19 @@ public class UserService {
         return userRepositary.save(user);
     }
 
-    public Optional<User> getUserById(Long id) throws UserNotFoundException {
+    public Optional<User> getUserById(Long id) throws UserNameNotFoundException {
         Optional<User> user=userRepositary.findById(id);
         if(!user.isPresent()){
-            throw new UserNotFoundException("User not found in user Repositary");
+            throw new UserNameNotFoundException("User not found in user Repositary");
 
         }
         return user;
     }
 
-    public User updateUserById(Long id, User user) throws UserNotFoundException{
+    public User updateUserById(Long id, User user) throws UserNameNotFoundException {
         Optional<User> optionalUser=userRepositary.findById(id);
         if(!optionalUser.isPresent()){
-            throw new UserNotFoundException("User not found in user Repositary, Please provide the correct user id");
+            throw new UserNameNotFoundException("User not found in user Repositary, Please provide the correct user id");
         }
         user.setId(id);
         return userRepositary.save(user);
@@ -53,8 +53,8 @@ public class UserService {
 
     }
 
-//    public User getUserByUsername(String userName){
-//        return userRepositary.findByUsername(userName);
-//    }
+    public User getUserByUsername(String userName){
+        return userRepositary.findByUserName(userName);
+    }
 
 }
