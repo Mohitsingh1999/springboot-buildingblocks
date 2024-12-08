@@ -2,3 +2,9 @@ insert into users values(101,'ms0135048@gmail.com','mohit','singh','admin','secr
 insert into users values(102,'neha@gmail.com','neha','verma','user','secret2','neha6188');
 insert into users values(103,'manvi@gmail.com','manvi','rathore','user','secret3','manvi6188');
 insert into users values(104,'simar@gmail.com','simar','bindra','user','secret4','bindra6188');
+insert into orders values(2001,101,'order11');
+insert into orders values(2002,101,'order12');
+insert into orders values(2003,101,'order13');
+insert into orders values(2004,102,'order14');
+insert into orders values(2005,102,'order15');
+insert into orders values(2006,103,'order16');

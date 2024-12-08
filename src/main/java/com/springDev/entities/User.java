@@ -1,17 +1,13 @@
 package com.springDev.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
 
 
-
-
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;
+
+import java.util.List;
 
 
 @Entity
@@ -38,6 +34,9 @@ public class User {
 
     @Column(name="SSN",length=50,nullable = false,unique = true)
     private String ssn;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     //NO arg constructor
     public User() {
@@ -108,6 +107,14 @@ public class User {
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
