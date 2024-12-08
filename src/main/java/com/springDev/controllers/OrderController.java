@@ -38,4 +38,15 @@ public class OrderController {
         order.setUser(user);
         return orderRepositary.save(order);
     }
+
+    @GetMapping("/{userid}/orders/{orderid}")
+    public Optional<Order> getOrderByOrderId(@PathVariable Long userid, @PathVariable Long orderid )throws UserNotFoundException{
+        Optional<User> userOptional=userRepositary.findById(userid);
+        Optional<Order> orderOptional=orderRepositary.findById(orderid);
+        if(!userOptional.isPresent() && orderOptional.isPresent()){
+            throw  new UserNotFoundException("User not found in user repository");
+        }
+        return orderRepositary.findById(orderid);
+
+    }
 }
